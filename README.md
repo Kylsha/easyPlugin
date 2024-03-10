@@ -1,6 +1,8 @@
 # easyPlugin
 QGIS plugin that allows to create plugins.
+
 ~ draft guide ~
+
 The main goal of this plugin is to make a fast and easy plugin template. With all respect to [Plugin Builder](https://github.com/g-sherman/Qgis-Plugin-Builder) module, easyPlugin is turnkey solution and makes a plugin ready for installation, testing and editing.
 Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing raw python plugin code and other scripts. 
 
