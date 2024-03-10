@@ -30,7 +30,7 @@ changelog=
 tags=plugin,template,development,wizard
 
 homepage=https://pereverzev.info/easyPlugin/
-tracker=
+tracker=https://github.com/Kylsha/easyPlugin/issues
 repository=https://github.com/Kylsha/easyPlugin
 icon=icon.png
 # experimental flag
