@@ -18,17 +18,12 @@ easyPlugin has just one window and user should type at least plugin name and poi
 Once at least **Plugin name** and **Out folder** fields are filled, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
 All plugin data will appear in a selected folder. There can be found all data related to plugin and zip-file itself. According to selected plugin type some parts of code will be different for each option while the mandatory functions remain the same.
 The main python file will be named same like a plugin name written by user. Let's say it is a **"test_plugin"**. So there will be a test_plugin.py file in plugin folder. This file can be edited and finally replaced in zip-file in order to change a plugin.
-This file contains five funcitons in the end of it: 
-* **simple_action**
-* **simple_gui**
-* **simple_map_tool**
-* **custom_tool**
-* **run**
-First four of them are "launchers" of action, widget, map or custom tool and the last one (run) is a selector of launcher function.
-* simple_action will print a notification in a blue bar of QGIS
-* simple_gui runs a pyqt widget imported from file template_tools.py which is in the same folder as test_plugin.py. SimpleGui widget can be found in template_tools.py and also modified and be replaced in zip-file of a pluging.
-* simple_map_tool runs a map tool which also can be found in template_tools.py. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in initGui function where a self.icon_action is defined.
-* custom_tool is the same thing like running a script from python editor console. It means that pressing a button will just run a file just like if it was run in python editor of QGIS. Actually this is not a good way to go, but experienced users can rewrite a code and import their custom objects the right way.
+This file contains five funcitons in the end of it. First four of them are "launchers" of action, widget, map or custom tool and the last one (run) is a selector of launcher function.
+* **simple_action** will print a notification in a blue bar of QGIS
+* **simple_gui** runs a pyqt widget imported from file template_tools.py which is in the same folder as test_plugin.py. SimpleGui widget can be found in template_tools.py and also modified and be replaced in zip-file of a plugin.
+* **simple_map_tool** runs a map tool which also can be found in template_tools.py. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in initGui function where a self.icon_action is defined.
+* **custom_tool** is the same thing like running a script from python editor console. It means that pressing a button will just run a file just like if it was run in python editor of QGIS. Actually this is not a good way to go, but experienced users can rewrite a code and import their custom objects the right way.
+* **run** runs one of the function above
 
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
