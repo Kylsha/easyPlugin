@@ -29,7 +29,7 @@ changelog=
 # tags are comma separated with spaces allowed
 tags=plugin,template,development,wizard
 
-homepage=https://pereverzev.info/easyPlugin/
+homepage=https://github.com/Kylsha/easyPlugin
 tracker=https://github.com/Kylsha/easyPlugin/issues
 repository=https://github.com/Kylsha/easyPlugin
 icon=icon.png
