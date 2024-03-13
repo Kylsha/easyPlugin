@@ -17,7 +17,7 @@ easyPlugin is a single-windowed widget where user should type at least **Plugin 
 
 Once **Plugin name** and **Out folder** fields are filled, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
 
-Let's say a plugin was named like **"test_plugin"** and Out folder is _C:\GIS\plugin_folder_.
+Let's say a plugin is named like **test_plugin**, type is **Action** and Out folder is **_C:\GIS\plugin_folder_**.
 
 There will be a file structure like this:
 
@@ -32,8 +32,45 @@ There will be a file structure like this:
 ```
 
 All plugin data will appear in a selected folder. There can be found all data related to plugin and zip-file itself. According to selected plugin type some parts of code will be different for each option while the mandatory functions remain the same.
-The main python file will be named same like a plugin name written by user (as in example, there would be a script file names _test_plugin.py_). This file can be edited and finally replaced in zip-file in order to change a plugin.
-This file contains five funcitons in the end of it. First four of them are "launchers" of action, widget, map or custom tool and the last one (run) is a selector of launcher function.
+The main python file will be named same like a plugin name written by user (as in example, there would be a script file names **_test_plugin.py_**). This file can be edited and finally replaced in zip-file in order to change a plugin.
+This file contains five funcitons in the end of it. 
+
+```
+    # custom actions, feel free to edit them
+    def simple_action(self):
+        # run a simple action like in python console of QGIS
+        self.iface.messageBar().pushMessage("Simple", "Action", level=Qgis.Info)
+
+
+    def simple_gui(self):
+        # run a widget with some actions
+        self.app = SimpleGui()
+
+
+    def simple_map_tool(self):
+        # run a map tool, also making an action button checkable
+        if self.icon_action.isChecked():
+            self.rband_tool_anchor = PointTool(self.icon_action)        
+            iface.mapCanvas().setMapTool(self.rband_tool_anchor)
+        else:
+            self.rband_tool_anchor.deactivate()
+            iface.mapCanvas().unsetMapTool(self.rband_tool_anchor)
+    
+
+    def custom_tool(self):
+        try:
+            pass
+        except Exception as e:
+            print(e)
+            self.warning_message("Error in script\nSee Python console for details")
+
+    # MAIN ACTION FUNCTION IS HERE
+    def run(self):
+        # run method that performs all the real work
+        self.simple_action()
+```
+
+First four of them are "launchers" of action, widget, map or custom tool and the last one (run) is a selector of launcher function.
 * **simple_action** will print a notification in a blue bar of QGIS
 * **simple_gui** runs a pyqt widget imported from file template_tools.py which is in the same folder as test_plugin.py. SimpleGui widget can be found in template_tools.py and also modified and be replaced in zip-file of a plugin.
 * **simple_map_tool** runs a map tool which also can be found in template_tools.py. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in initGui function where a self.icon_action is defined.
