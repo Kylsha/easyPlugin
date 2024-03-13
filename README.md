@@ -31,9 +31,10 @@ There will be a file structure like this:
 └── test_plugin.zip
 ```
 
-All plugin data will appear in a selected folder. There can be found all data related to plugin and zip-file itself. According to selected plugin type some parts of code will be different for each option while the mandatory functions remain the same.
-The main python file will be named same like a plugin name written by user (as in example, there would be a script file names **_test_plugin.py_**). This file can be edited and finally replaced in zip-file in order to change a plugin.
-This file contains five funcitons in the end of it. 
+All plugin data will appear in the selected folder. All data related to plugin and zip-file itself can be found there. According to the type of plugin some parts of code will be different for each option while the mandatory functions remain the same.
+The main python file will be named same like a plugin name written by user. 
+
+As in example, there would be a script file names **_test_plugin.py_**. This file can be edited and finally replaced in zip-file in order to change a plugin. This file contains five funcitons in the end of it:
 
 ```
     # custom actions, feel free to edit them
@@ -41,11 +42,9 @@ This file contains five funcitons in the end of it.
         # run a simple action like in python console of QGIS
         self.iface.messageBar().pushMessage("Simple", "Action", level=Qgis.Info)
 
-
     def simple_gui(self):
         # run a widget with some actions
         self.app = SimpleGui()
-
 
     def simple_map_tool(self):
         # run a map tool, also making an action button checkable
@@ -55,7 +54,6 @@ This file contains five funcitons in the end of it.
         else:
             self.rband_tool_anchor.deactivate()
             iface.mapCanvas().unsetMapTool(self.rband_tool_anchor)
-    
 
     def custom_tool(self):
         try:
@@ -64,7 +62,6 @@ This file contains five funcitons in the end of it.
             print(e)
             self.warning_message("Error in script\nSee Python console for details")
 
-    # MAIN ACTION FUNCTION IS HERE
     def run(self):
         # run method that performs all the real work
         self.simple_action()
@@ -76,6 +73,30 @@ First four of them are "launchers" of action, widget, map or custom tool and the
 * **simple_map_tool** runs a map tool which also can be found in template_tools.py. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in initGui function where a self.icon_action is defined.
 * **custom_tool** is the same thing like running a script from python editor console. It means that pressing a button will just run a file just like if it was run in python editor of QGIS. Actually this is not a good way to go, but experienced users can rewrite a code and import their custom objects the right way.
 * **run** runs one of the function above
+
+If there is a need to change something in plugin, this file can be edited according to function typed in ```run()``` method. In the example there is a ```simple_action()``` launching which will make a notication in a blue QGIS bar. Let's say we want to change it and instead of notification make a print of all vector layers with number of their features in current project. 
+
+Change in a code:
+```
+    # custom actions, feel free to edit them
+    def simple_action(self):
+        # run a simple action like in python console of QGIS
+        all_layers_count = [[l.name(), l.featureCount()] for l in QgsProject.instance().mapLayers().values() if l.type() == QgsVectorLayer.VectorLayer]
+        for layer_name, layer_count in all_layers_count:
+            print('{} \t {}'.format(layer_name, layer_count))
+```
+
+That's it, code is changed and **_test_plugin.py_** can be put in a zip-file. Then plugin should be re-installed in order to see changes.
+
+Another example - to show a simple notification widget window with all that layers and their feature numbers.
+```
+    # custom actions, feel free to edit them
+    def simple_action(self):
+        # run a simple action like in python console of QGIS
+        all_layers_count = [[l.name(), l.featureCount()] for l in QgsProject.instance().mapLayers().values() if l.type() == QgsVectorLayer.VectorLayer]
+        message = '\n'.join(['{} \t {}'.format(layer_name, layer_count) for layer_name, layer_count in all_layers_count])
+```
+
 
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
