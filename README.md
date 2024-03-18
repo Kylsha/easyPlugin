@@ -119,5 +119,34 @@ The last widget type is a **Custom** and like mentioned above it just runs a Pyt
 
 This tool is made for testing Python script files. User should specify a direct path to directory with Python files. Then window will show a list of Python files while you user is able to edit them in some external code editor. So when user double-click a script in Scripter, the most up-to-date version of selected script will be launched. It also helps in a team work, when you have a shared folder between users, they don't need to constantly update script/plugin, they will have the latest version of tool made by someone.
 
- [!TIP]
-> Scripter tool was greeted by collegaues by its simplicity. From some moment I prefer it much more than plugins with repository that should be updated manually sometimes. It was more convenient in case of issue fixes: collegaues have a same local network path to scripts and tell that some script works incorrectly. I fix the script and tell that it is ready to go. Another users don't have to have update something (plugin via repository or zip-file), they just re-run script and that's it.
+>[!NOTE]
+> Scripter tool was greeted by collegaues by its simplicity. From some moment I prefer it more than plugins with repository that should be updated manually sometimes. It is more convenient in case of issue fixes: collegaues have a same local network path to scripts and tell that some script works incorrectly. I fix the script and tell that it is ready to go. Another users don't have to have update something (plugin via repository or zip-file), they just re-run script and that's it.
+
+Scripts which are run from Scripter should have all needed libraries imported in order to work. Otherwise Scripter will tell that something is wrong with selected script and an error will be printed in Python console of QGIS. So, despite the fact that some libraries are imported in QGIS from startup, they should be re-imported in local script file. 
+
+Example:
+
+```
+from qgis.utils import iface
+from PyQt5.QtWidgets import QWidget, QPushButton, QVBoxLayout
+
+class TestWidget(QWidget):
+    def __init__(self):
+        super().__init__()
+        self.resize(250, 100)
+        self.setWindowTitle("My App")
+        layout = QVBoxLayout(self)
+        button = QPushButton("Press Me!")
+        layout.addWidget(button)
+        button.clicked.connect(self.get_current_layer)
+        self.show()
+
+    def get_current_layer(self):
+        active_layer = iface.activeLayer()
+        if active_layer:
+            print(active_layer.name())
+        else:
+            print('no layers in project')
+app = TestWidget()
+```
+Here `iface` and `PyQt5` elements are imported.
