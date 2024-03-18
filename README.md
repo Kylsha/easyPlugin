@@ -1,8 +1,6 @@
 # easyPlugin
 QGIS plugin that allows to create plugins.
 
-~ draft guide ~
-
 The main goal of this plugin is to make a fast and easy plugin template. With all respect to [Plugin Builder](https://github.com/g-sherman/Qgis-Plugin-Builder) module, easyPlugin is turnkey solution and makes a plugin ready for installation, testing and editing.
 Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing raw Python plugin code and other scripts. 
 
@@ -134,9 +132,9 @@ class TestWidget(QWidget):
     def __init__(self):
         super().__init__()
         self.resize(250, 100)
-        self.setWindowTitle("My App")
+        self.setWindowTitle("Test widget")
         layout = QVBoxLayout(self)
-        button = QPushButton("Press Me!")
+        button = QPushButton("Check active layer")
         layout.addWidget(button)
         button.clicked.connect(self.get_current_layer)
         self.show()
