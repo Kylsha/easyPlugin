@@ -4,7 +4,7 @@ QGIS plugin that allows to create plugins.
 ~ draft guide ~
 
 The main goal of this plugin is to make a fast and easy plugin template. With all respect to [Plugin Builder](https://github.com/g-sherman/Qgis-Plugin-Builder) module, easyPlugin is turnkey solution and makes a plugin ready for installation, testing and editing.
-Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing raw python plugin code and other scripts. 
+Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing raw Python plugin code and other scripts. 
 
 ## easyPlugin tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_ep.png)
@@ -12,19 +12,19 @@ Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing r
 ### Quickstart guide
 easyPlugin is a single-windowed widget that allows user to create a template of a plugin with minimum steps. The result is a folder with plugin contents and zip-file itself.  
 
-Mandatory user inputs are: **Plugin name**, **Plugin type** and **Out folder**. Another information may be mentioned. 
+Mandatory user inputs are: **Plugin title**, **Plugin type** and **Out folder**. Another information may be mentioned. 
 
-**Plugin name** is the name of a plugin. It should be written with english characters only and no numbers or punctuation signs (only underscore sign allowed). This name will be used as a future name of a plugin and in some Python classes names.
+**Plugin title** is the name of a plugin. It should be written with english characters only and no numbers or punctuation signs (only underscore sign allowed). This name will be used as a future name of a plugin and in some Python classes names.
 
 **Plugin type** is a sample type of a plugin. It is not some classification of plugin types, just a setup for popular scenarios of plugin use.
 * **Action** type will make plugin do some action just by pressing a plugin icon.
 * **Widget** type is a simple widget template which can be either modified or rewritten completely. 
 * **Map tool** is a simple mapping tool which makes plugin button checkable. It makes a pointer tool which puts point on map by pressing cursor on canvas. Can be deactivated by pressing plugin button one more time or selecting another map tool in QGIS.
-* **Custom** type means user can take some script and make it launching from plugin button. Note that this is a kind of dirty solution. Plugin will just execute a file, not importing user's script modules and other parts that can be reached from main plugin file. The better solution would be to edit plugin's main python file and import script in a right way.
+* **Custom** type means user can take some script and make it launching from plugin button. Note that this is a kind of dirty solution. Plugin will just execute a file, not importing user's script modules and other parts that can be reached from main plugin file. The better solution would be to edit plugin's main Python file and import script in a right way.
 
 **Out folder** is a path to a folder which will be used as place where plugin data will be stored as well as zip-file.,
 
-Once **Plugin name**, **Plugin type** and **Out folder** forms are completed, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
+Once **Plugin title**, **Plugin type** and **Out folder** forms are completed, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
 
 Let's say a plugin is named like **test_plugin**, type is **Action** and Out folder is **_C:\GIS\plugin_folder_**. If user installs plugin and test it by pressing a plugin button, a blue notification bar will be apeared in current QGIS project. It means that everything is okay and plugin works.
 
@@ -43,14 +43,14 @@ There will be a file structure like this:
 ```
 
 All plugin data will appear in the selected folder. According to the type of plugin some parts of code will be different for each option while the mandatory functions remain the same.
-The main python file will be named same like a plugin name written by user. 
+The main Python file will be named same like a plugin title written by user. 
 
 As in example, there would be a script file called `test_plugin.py`. This file can be edited and finally replaced in zip-file in order to change a plugin. This file contains five funcitons in the end of it:
 
 ```
     # custom actions, feel free to edit them
     def simple_action(self):
-        # run a simple action like in python console of QGIS
+        # run a simple action like in Python console of QGIS
         self.iface.messageBar().pushMessage("Simple", "Action", level=Qgis.Info)
 
     def simple_gui(self):
@@ -91,7 +91,7 @@ Change in a code:
 ```
     # custom actions, feel free to edit them
     def simple_action(self):
-        # run a simple action like in python console of QGIS
+        # run a simple action like in Python console of QGIS
         all_layers_count = [[l.name(), l.featureCount()] for l in QgsProject.instance().mapLayers().values() if l.type() == QgsVectorLayer.VectorLayer]
         for layer_name, layer_count in all_layers_count:
             print('{} \t {}'.format(layer_name, layer_count))
@@ -103,7 +103,7 @@ Another example - to do the same thing but show it in a notification window widg
 ```
     # custom actions, feel free to edit them
     def simple_action(self):
-        # run a simple action like in python console of QGIS
+        # run a simple action like in Python console of QGIS
         all_layers_count = [[l.name(), l.featureCount()] for l in QgsProject.instance().mapLayers().values() if l.type() == QgsVectorLayer.VectorLayer]
         message = '\n'.join(['{}: {}'.format(layer_name, layer_count) for layer_name, layer_count in all_layers_count])
 ```
@@ -117,7 +117,7 @@ The last widget type is a **Custom** and like mentioned above it just runs a Pyt
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
 
-This tool is made for testing Python script files. User should specify a direct path to directory with python files. Then window will show a list of Python files while you user is able to edit them in some external code editor. So when user double-click a script in Scripter, the most up-to-date version of selected script will be launched. It also helps in a team work, when you have a shared folder between users, they don't need to constantly update script/plugin, they will have the latest version of tool made by someone.
+This tool is made for testing Python script files. User should specify a direct path to directory with Python files. Then window will show a list of Python files while you user is able to edit them in some external code editor. So when user double-click a script in Scripter, the most up-to-date version of selected script will be launched. It also helps in a team work, when you have a shared folder between users, they don't need to constantly update script/plugin, they will have the latest version of tool made by someone.
 
  [!TIP]
 > Scripter tool was greeted by collegaues by its simplicity. From some moment I prefer it much more than plugins with repository that should be updated manually sometimes. It was more convenient in case of issue fixes: collegaues have a same local network path to scripts and tell that some script works incorrectly. I fix the script and tell that it is ready to go. Another users don't have to have update something (plugin via repository or zip-file), they just re-run script and that's it.
