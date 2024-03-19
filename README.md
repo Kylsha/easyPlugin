@@ -24,7 +24,7 @@ Mandatory user inputs are: **Plugin title**, **Plugin type** and **Out folder**.
 
 Once **Plugin title**, **Plugin type** and **Out folder** forms are completed, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
 
-Let's say a plugin is named like `test_plugin`, type is `Action` and Out folder is `C:\GIS\plugin_folder`. If user installed plugin and test it by pressing a plugin button, a blue notification bar will be appeared in current QGIS project. It means that everything is okay and plugin works.
+Let's say a plugin is named like `test_plugin`, type is `Action` and **Out folder** is `C:\GIS\plugin_folder`. If user installed plugin and test it by pressing a plugin button, a blue notification bar will be appeared in current QGIS project. It means that everything is okay and plugin works.
 
 ### Editing plugin contents
 
