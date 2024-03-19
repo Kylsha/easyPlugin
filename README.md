@@ -10,21 +10,21 @@ Plugin contains two tools: easyPlugin itself and Scripter - a tool for testing r
 ### Quickstart guide
 easyPlugin is a single-windowed widget that allows user to create a template of a plugin with minimum steps. The result is a folder with plugin contents and zip-file itself.  
 
-Mandatory user inputs are: **Plugin title**, **Plugin type** and **Out folder**. Another information may be mentioned. 
+Mandatory user inputs are: **Plugin title**, **Plugin type** and **Out folder**. Another information (author, mail tracker etc.) is not necessary but recommended to be written. 
 
-**Plugin title** is the name of a plugin. It should be written with english characters only and no numbers or punctuation signs (only underscore sign allowed). This name will be used as a future name of a plugin and in some Python classes names.
+**1. Plugin title** is the name of a plugin. It should be written with english characters only and no numbers or punctuation signs (only underscore sign allowed). This name will be used as a future name of a plugin and in some Python classes names.
 
-**Plugin type** is a sample type of a plugin. It is not some classification of plugin types, just a setup for popular scenarios of plugin use.
+**2. Plugin type** is a sample type of a plugin. It is not some classification of plugin types, just a setup for popular scenarios of plugin use.
 * **Action** type will make plugin do some action just by pressing a plugin icon.
 * **Widget** type is a simple widget template which can be either modified or rewritten completely. 
 * **Map tool** is a simple mapping tool which makes plugin button checkable. It makes a pointer tool which puts point on map by pressing cursor on canvas. Can be deactivated by pressing plugin button one more time or selecting another map tool in QGIS.
-* **Custom** type means user can take some script and make it launching from plugin button. Note that this is a kind of dirty solution. Plugin will just execute a file, not importing user's script modules and other parts that can be reached from main plugin file. The better solution would be to edit plugin's main Python file and import script in a right way.
+* **Custom** type means user can take some script and make it launching from plugin button. When this type is selected, a custom Python file has to be selected as well. Note that this is a kind of dirty solution. Plugin will just execute a file, not importing user's script modules and other parts that can be reached from main plugin file. The better solution would be to edit plugin's main Python file and import script in a right way.
 
-**Out folder** is a path to a folder which will be used as place where plugin data will be stored as well as zip-file.,
+**3. Out folder** is a path to a folder which will be used as place where plugin data will be stored as well as zip-file.
 
 Once **Plugin title**, **Plugin type** and **Out folder** forms are completed, user can generate plugin by clicking the appropriate button. Then there will be a question whether to install plugin or not.
 
-Let's say a plugin is named like **test_plugin**, type is **Action** and Out folder is **_C:\GIS\plugin_folder_**. If user installs plugin and test it by pressing a plugin button, a blue notification bar will be apeared in current QGIS project. It means that everything is okay and plugin works.
+Let's say a plugin is named like `test_plugin`, type is `Action` and Out folder is `C:\GIS\plugin_folder`. If user installed plugin and test it by pressing a plugin button, a blue notification bar will be appeared in current QGIS project. It means that everything is okay and plugin works.
 
 ### Editing plugin contents
 
@@ -76,7 +76,7 @@ As in example, there would be a script file called `test_plugin.py`. This file c
         self.simple_action()
 ```
 
-First four of them are "launchers" of action, widget, map or custom tool (reference to a **Plugin type** option box) and the last one (run) is a selector of launcher function.
+First four of them are "launchers" of action, widget, map or custom tool (reference to a **Plugin type** option box) and the last one (`run()`) is a selector of launcher function.
 * **simple_action** will print a notification in a blue bar of QGIS (like in the example above).
 * **simple_gui** runs a pyqt widget imported from file `template_tools.py` which is in the same folder as `test_plugin.py`. `SimpleGui()` widget can be found in `template_tools.py` and also modified and be replaced in zip-file of a plugin.
 * **simple_map_tool** runs a map tool which also can be found in `template_tools.py`. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in `initGui()` function where a `self.icon_action` is defined.
@@ -95,7 +95,7 @@ Change in a code:
             print('{} \t {}'.format(layer_name, layer_count))
 ```
 
-That's it, code is changed and `test_plugin.py_` can be put in a zip-file. Then plugin should be re-installed in order to see changes.
+That's it, code is changed and `test_plugin.py` can be put in a zip-file. Then plugin should be re-installed in order to see changes.
 
 Another example - to do the same thing but show it in a notification window widget.
 ```
@@ -104,6 +104,7 @@ Another example - to do the same thing but show it in a notification window widg
         # run a simple action like in Python console of QGIS
         all_layers_count = [[l.name(), l.featureCount()] for l in QgsProject.instance().mapLayers().values() if l.type() == QgsVectorLayer.VectorLayer]
         message = '\n'.join(['{}: {}'.format(layer_name, layer_count) for layer_name, layer_count in all_layers_count])
+        QMessageBox.information(None, "Notification", message) 
 ```
 
 For now a notification widget with all layers' data will appear by pressing a plugin button.
@@ -147,4 +148,13 @@ class TestWidget(QWidget):
             print('no layers in project')
 app = TestWidget()
 ```
-Here `iface` and `PyQt5` elements are imported.
+Here `iface` and `PyQt5` elements are imported. This code snippet can be saved as a Python script file and put in a folder selected as a script path in Scripter. In order to update contents of script list in Scripter widget, a blue refresh button should be pressed. Finally a double click on script will execute it. Same thing can be achieved in by selecting script in a list and pressing a ▶︎ button.
+
+The right part of Scripter window is used to show a description of selected plugins. In order to do that, a file `descriptions.json` should be created in a folder which is selected as a script path. A content of this file should look like that:
+```
+{
+    "test": "A sample Python code snippet.",
+    "my_widget": "PyQt5 widget to show layers info"
+}
+```
+where keys are filenames and values are file script descriptions.
