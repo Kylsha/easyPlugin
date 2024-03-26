@@ -1,4 +1,4 @@
-[![en](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/Kylsha/easyPlugin/blob/main/README.md) 
+[![en](https://img.shields.io/badge/lang-ru-red.svg)](https://github.com/Kylsha/easyPlugin/blob/main/README.ru.md) 
 # easyPlugin
 QGIS plugin that allows to create plugins.
 
