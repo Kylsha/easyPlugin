@@ -44,7 +44,7 @@ There will be a file structure like this:
 All plugin data will appear in the selected folder. According to the type of plugin some parts of code will be different for each option while the mandatory functions remain the same.
 The main Python file will be named same like a plugin title written by user. 
 
-As in example, there would be a script file called `test_plugin.py`. This file can be edited and finally replaced in zip-file in order to change a plugin. This file contains five funcitons in the end of it:
+As in example, there would be a script file called `test_plugin.py`. This file can be edited and finally replaced in zip-file in order to change a plugin. This file contains five functions in the end of it:
 
 ```
     # custom actions, feel free to edit them
@@ -84,7 +84,7 @@ First four of them are "launchers" of action, widget, map or custom tool (refere
 * **custom_tool** is the same thing like running a script from Python editor console. It means that pressing a button will just run a file just as if it was run in Python editor of QGIS. Actually this is not a good way to go, but experienced users can rewrite a code and import their custom objects the right way.
 * **run** runs one of the function above.
 
-If there is a need to change something in plugin, this file can be edited according to function menntioned in `run()` method. In the example there is a `simple_action()` function which will make a notication in a blue QGIS bar. Let's say we want to change it and instead of notification make a print of all vector layers with number of their features in current project. 
+If there is a need to change something in plugin, this file can be edited according to function mentioned in `run()` method. In the example there is a `simple_action()` function which will make a notification in a blue QGIS bar. Let's say we want to change it and instead of notification make a print of all vector layers with number of their features in current project. 
 
 Change in a code:
 ```
@@ -120,7 +120,7 @@ The last widget type is a **Custom** and like mentioned above it just runs a Pyt
 This tool is made for testing Python script files. User should specify a direct path to directory with Python files. Then window will show a list of Python files while you user is able to edit them in some external code editor. So when user double-click a script in Scripter, the most up-to-date version of selected script will be launched. It also helps in a team work, when you have a shared folder between users, they don't need to constantly update script/plugin, they will have the latest version of tool made by someone.
 
 >[!NOTE]
-> Scripter tool was greeted by collegaues by its simplicity. From some moment I prefer it more than plugins with repository that should be updated manually sometimes. It is more convenient in case of issue fixes: collegaues have a same local network path to scripts and tell that some script works incorrectly. I fix the script and tell that it is ready to go. Another users don't have to have update something (plugin via repository or zip-file), they just re-run script and that's it.
+> Scripter tool was greeted by colleagues by its simplicity. From some moment I prefer it more than plugins with repository that should be updated manually sometimes. It is more convenient in case of issue fixes: colleagues have a same local network path to scripts and tell that some script works incorrectly. I fix the script and tell that it is ready to go. Another users don't have to have update something (plugin via repository or zip-file), they just re-run script and that's it.
 
 Scripts which are run from Scripter should have all needed libraries imported in order to work. Otherwise Scripter will tell that something is wrong with selected script and an error will be printed in Python console of QGIS. So, despite the fact that some libraries are imported in QGIS from startup, they should be re-imported in local script file. 
 
