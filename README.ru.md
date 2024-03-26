@@ -1,4 +1,4 @@
-[![en](https://img.shields.io/badge/lang-en-red.svg)](https://github.com/Kylsha/easyPlugin/blob/main/README.md) 
+[![en](https://img.shields.io/badge/lang-en-blue.svg)](https://github.com/Kylsha/easyPlugin/blob/main/README.md) 
 # easyPlugin
 Инструмент для создания плагинов в QGIS.
 
@@ -74,17 +74,17 @@ easyPlugin - это виджет, позволяющий пользовател�
         self.simple_action()
 ```
 
-Первые четыре функции — это запуск действия в соответствии с типом плагина, а последняя (run) указывает, какое действие нужно выбрать.
+Первые четыре функции — это запуск действия в соответствии с типом плагина, а последняя (`run()`) указывает, какое действие нужно выбрать.
 
-* **simple_action** will print a notification in a blue bar of QGIS (like in the example above).
-* **simple_gui** runs a pyqt widget imported from file `template_tools.py` which is in the same folder as `test_plugin.py`. `SimpleGui()` widget can be found in `template_tools.py` and also modified and be replaced in zip-file of a plugin.
-* **simple_map_tool** runs a map tool which also can be found in `template_tools.py`. Also if this type of plugin is selected, a plugin button becomes checkable. This is mentioned in `initGui()` function where a `self.icon_action` is defined.
-* **custom_tool** is the same thing like running a script from Python editor console. It means that pressing a button will just run a file just as if it was run in Python editor of QGIS. Actually this is not a good way to go, but experienced users can rewrite a code and import their custom objects the right way.
-* **run** runs one of the function above.
+* **simple_action** выводит уведомление в голубой строке над зоной карты QGIS (как в примере выше).
+* **simple_gui** запускает pyqt-виджет из файла `template_tools.py`, который расположен в той же папке, что и `test_plugin.py`. Виджет `SimpleGui()`, который запускается этой функцией, расположен в `template_tools.py`. Его можно изменять и заменять сохраненный файл в zip-архиве плагина.
+* **simple_map_tool** запускает картографический инструмент (считывание положений курсора и нажатий на карте), который также можно найти в `template_tools.py`. Если выбран этот тип плагина, его кнопка принимает вид переключателя, то есть по аналогии с другими картографическими инструментами. Это определено в функции `initGui()` в которой задается атрибут `self.icon_action`.
+* **custom_tool** аналог запуска скрипта из редактора консоли Python в QGIS. Нажатие кнопки плагина всего лишь запускает скрипт, который был указан в easyPlugin. Как было указано ранее, это не очень хорошгий способ, продвинутые пользователи могут переписать часть кода в этой функции с корректной подгрузкой объектов из другого файла.
+* **run** запускает одну из функций выше.
 
-If there is a need to change something in plugin, this file can be edited according to function menntioned in `run()` method. In the example there is a `simple_action()` function which will make a notication in a blue QGIS bar. Let's say we want to change it and instead of notification make a print of all vector layers with number of their features in current project. 
+Если требуется что-то изменить в плагине, этот файл может быть отредактирован в соответствии с функцией, указанной в `run()`. В примере приведена функция `simple_action()`, которая создает уведомление в голубой строке QGIS. Допустим, необходимо заменить ее на вывод всех векторных слоев текущего проекта и количества объектов в них в консоли Python.
 
-Change in a code:
+Изменения в коде:
 ```
     # custom actions, feel free to edit them
     def simple_action(self):
@@ -94,9 +94,9 @@ Change in a code:
             print('{} \t {}'.format(layer_name, layer_count))
 ```
 
-That's it, code is changed and `test_plugin.py` can be put in a zip-file. Then plugin should be re-installed in order to see changes.
+После изменений и сохранения файла `test_plugin.py` он может быть загружен в zip-архив плагина, после чего последний должен быть переустановлен, чтобы можно было увидеть изменения. 
 
-Another example - to do the same thing but show it in a notification window widget.
+Другой пример — сделать то же самое, но с выводом данных по слоям в простой виджет-уведомление.
 ```
     # custom actions, feel free to edit them
     def simple_action(self):
@@ -106,11 +106,11 @@ Another example - to do the same thing but show it in a notification window widg
         QMessageBox.information(None, "Notification", message) 
 ```
 
-For now a notification widget with all layers' data will appear by pressing a plugin button.
+После этого при нажатии кнопки будет полявляться виджет с данными по слоям.
 
-If user selects **Widget** or **Map tool** type, `run()` method will have either `simple_gui()` or `simple_map_tool()` function. Both of them reference to a `template_tools.py` file which is also imported in a main Python script (i.e., `test_plugin.py`). So if something has to be changed in provided widget sample or a map tool, user should edit the `template_tools.py` file.
+Если пользователь выберет тип **Widget** или **Map tool** , в функцию `run()` добавится вызов функции `simple_gui()` или `simple_map_tool()` соответственно. Обе функции отсылаются к файлу `template_tools.py`, который также импортируется из Python-скрипта (т.е., `test_plugin.py`). Если необходимо что-то заменить в функционале шаблонных инструментов, необходимо редактировать файл `template_tools.py`.
 
-The last widget type is a **Custom** and like mentioned above it just runs a Python file. This solution would work for not complex projects that use multiple imports from other files or any joins with main Python script.
+Последний тип плагина — **Custom**, который запускает файл скрипта Python. Этот вариант применим для простых плагинов, которые не используют несколько файлов-скриптов и импортов данных из них.
 
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
