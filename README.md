@@ -114,6 +114,10 @@ If user selects **Widget** or **Map tool** type, `run()` method will have either
 
 The last widget type is a **Custom** and like mentioned above it just runs a Python file. This solution would work for not complex projects that use multiple imports from other files or any joins with main Python script.
 
+Video guide provided below:
+
+[![Video](https://img.youtube.com/vi/c0GMBXu4i0M/maxresdefault.jpg)](https://youtu.be/c0GMBXu4i0M?si=ZS58Z8i7bukrbvHz)
+
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
 
