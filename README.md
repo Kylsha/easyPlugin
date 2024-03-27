@@ -116,7 +116,7 @@ The last widget type is a **Custom** and like mentioned above it just runs a Pyt
 
 Video guide provided below:
 
-[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/c0GMBXu4i0M?si=ZS58Z8i7bukrbvHz)
+[![Guide](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2Fc0GMBXu4i0M%3Fsi%3DTJanCdB7AO_T_MTg)](https://youtu.be/c0GMBXu4i0M?si=TJanCdB7AO_T_MTg)
 
 
 ## Scripter tool
