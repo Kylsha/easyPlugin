@@ -116,7 +116,8 @@ The last widget type is a **Custom** and like mentioned above it just runs a Pyt
 
 Video guide provided below:
 
-[![Video](https://img.youtube.com/vi/c0GMBXu4i0M/maxresdefault.jpg)](https://youtu.be/c0GMBXu4i0M?si=ZS58Z8i7bukrbvHz)
+[![Watch the video](https://i.stack.imgur.com/Vp2cE.png)](https://youtu.be/c0GMBXu4i0M?si=ZS58Z8i7bukrbvHz)
+
 
 ## Scripter tool
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
