@@ -124,7 +124,9 @@ This tool is made for testing Python script files. User should specify a direct 
 
 Scripts which are run from Scripter should have all needed libraries imported in order to work. Otherwise Scripter will tell that something is wrong with selected script and an error will be printed in Python console of QGIS. So, despite the fact that some libraries are imported in QGIS from startup, they should be re-imported in local script file. 
 
-Example:
+### Quickstart
+
+For example there is a script which can be run from Python console:
 
 ```
 from qgis.utils import iface
@@ -149,7 +151,10 @@ class TestWidget(QWidget):
             print('no layers in project')
 app = TestWidget()
 ```
-Here `iface` and `PyQt5` elements are imported. This code snippet can be saved as a Python script file and put in a folder selected as a script path in Scripter. In order to update contents of script list in Scripter widget, a blue refresh button should be pressed. Finally a double click on script will execute it. Same thing can be achieved in by selecting script in a list and pressing a ▶︎ button.
+>[!NOTE]
+> Here `iface` and `PyQt5` elements are imported in order to make script run from Scripter.
+
+This code snippet can be saved as a Python script file (for example, `my_widget.py`) and put in a folder selected as a script path in Scripter. In order to update contents of script list in Scripter widget, a blue refresh button should be pressed. Finally a double click on script will execute it. Same thing can be achieved in by selecting script in a list and pressing a ▶︎ button.
 
 The right part of Scripter window is used to show a description of selected plugins. In order to do that, a file `descriptions.json` should be created in a folder which is selected as a script path. A content of this file should look like that:
 ```
@@ -159,3 +164,6 @@ The right part of Scripter window is used to show a description of selected plug
 }
 ```
 where keys are filenames without extensions and values are script file descriptions.
+
+Due to imports of all needed modules (like PyQt widgets and other) scripts can be used in plugin development.
+
