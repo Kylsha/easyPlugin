@@ -116,7 +116,7 @@ easyPlugin - это виджет, позволяющий пользовател�
 
 Видеоинструкция: 
 
-[![Guide](https://markdown-videos-api.jorgenkh.no/url?url=https%3A%2F%2Fyoutu.be%2Fc0GMBXu4i0M%3Fsi%3DTJanCdB7AO_T_MTg)](https://youtu.be/c0GMBXu4i0M?si=TJanCdB7AO_T_MTg)
+https://github.com/Kylsha/easyPlugin/assets/25682040/fc04cf6a-39c8-418e-8e39-8fef1cd613de
 
 ## Инструмент Scripter
 ![Table loook](https://pereverzev.info/easyPlugin/img/img_es.png)
