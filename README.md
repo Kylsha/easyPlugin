@@ -173,5 +173,6 @@ where keys are filenames without extensions and values are script file descripti
 Due to imports of all needed modules (like PyQt widgets and other) scripts can be used in plugin development.
 
 Video guide provided below:
+
 https://github.com/Kylsha/easyPlugin/assets/25682040/67390440-8ca9-4c46-9284-0677c74a3be9
 
